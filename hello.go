@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/anelivaldes-tw/learngotests/integers"
+)
 
 const spanish = "Spanish"
 const french = "French"
@@ -29,5 +32,7 @@ func getPrefix(language string) (prefix string) {
 }
 
 func main() {
-	fmt.Println(Hello("World", ""))
+	fmt.Println(Hello("Aneli", french))
+	fmt.Println(integers.Add(5, 8))
+	fmt.Println(integers.Multiply(9, 8))
 }
