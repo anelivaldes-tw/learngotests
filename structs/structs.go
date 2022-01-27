@@ -30,3 +30,11 @@ func (r Rectangle) Area() float64 {
 func (c Circle) Area() float64 {
 	return math.Pi * c.Radius * c.Radius
 }
+
+// In Go interface resolution is implicit.
+// If the type you pass in matches what the
+//interface is asking for, it will compile.
+
+type Shape interface {
+	Area() float64
+}
