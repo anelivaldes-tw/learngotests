@@ -14,6 +14,10 @@ type Rectangle struct {
 type Circle struct {
 	Radius float64
 }
+type Triangle struct {
+	Base   float64
+	Height float64
+}
 
 /*
 The syntax for declaring methods is almost the same as functions and that's because they're so similar.
@@ -29,6 +33,10 @@ func (r Rectangle) Area() float64 {
 
 func (c Circle) Area() float64 {
 	return math.Pi * c.Radius * c.Radius
+}
+
+func (t Triangle) Area() float64 {
+	return (t.Base * t.Height) / 2
 }
 
 // In Go interface resolution is implicit.
