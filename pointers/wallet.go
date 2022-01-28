@@ -27,3 +27,8 @@ func (w *Wallet) Balance() Bitcoin {
 	fmt.Printf("address of balance in Balance is %v \n", &w.balance)
 	return (*w).balance // It is not required to change to (*w), but better for consistency
 }
+
+// Let's implement Stringer on Bitcoin
+func (b Bitcoin) String() string {
+	return fmt.Sprintf("%d BTC", b)
+}
