@@ -1,8 +1,11 @@
 package maps
 
-import "errors"
+import (
+	"errors"
+)
 
 var ErrNotFound = errors.New("could not find the word you were looking for")
+var ErrWordExists = errors.New("cannot add word because it already exists")
 
 type Dictionary map[string]string
 
@@ -24,12 +27,37 @@ type Dictionary map[string]string
 //Which ensures that you will never get a runtime panic.
 
 func (d Dictionary) Search(word string) (string, error) {
+
+	/*	A two-value assignment tests for the existence of a key:
+
+		i, ok := m["route"]
+		In this statement, the first value (i) is assigned the value stored
+		under the key "route". If that key doesn’t exist, i is the value type’s
+		zero value (0). The second value (ok) is a bool that is true if the key
+		exists in the map, and false if not.
+
+		To test for a key without retrieving the value,
+		use an underscore in place of the first value:
+
+		_, ok := m["route"]
+	*/
+
 	definition, ok := d[word]
 	if !ok {
 		return "", ErrNotFound
 	}
 	return definition, nil
 }
-func (d Dictionary) Add(word string, definition string) {
-	d[word] = definition
+func (d Dictionary) Add(word string, definition string) error {
+	// Only add the word if it does not exist
+	_, err := d.Search(word)
+	switch err {
+	case ErrNotFound:
+		d[word] = definition
+	case nil:
+		return ErrWordExists
+	default:
+		return err
+	}
+	return nil
 }
