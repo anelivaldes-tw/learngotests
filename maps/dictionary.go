@@ -85,3 +85,13 @@ func (d Dictionary) Update(word string, definition string) error {
 	}
 	return nil
 }
+func (d Dictionary) Delete(word string) {
+	/*
+		The delete function returns nothing,
+		and we based our Delete method on the same notion.
+			Since deleting a value that's not there has no effect,
+		unlike our Update and Add methods,
+		we don't need to complicate the API with errors.
+	*/
+	delete(d, word)
+}
