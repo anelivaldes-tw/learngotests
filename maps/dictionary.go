@@ -1,13 +1,22 @@
 package maps
 
-import (
-	"errors"
-)
-
-var ErrNotFound = errors.New("could not find the word you were looking for")
-var ErrWordExists = errors.New("cannot add word because it already exists")
-
 type Dictionary map[string]string
+
+/*
+	We made the errors constant; this required us to create our
+	own DictionaryErr type which implements the error interface.
+	Simply put, it makes the errors
+	more reusable and immutable.
+*/
+
+type DictionaryErr string
+
+const ErrNotFound = DictionaryErr("could not find the word you were looking for")
+const ErrWordExists = DictionaryErr("cannot add word because it already exists")
+
+func (e DictionaryErr) Error() string {
+	return string(e)
+}
 
 // IMPORTANT
 //A gotcha with maps is that they can be a nil value.
