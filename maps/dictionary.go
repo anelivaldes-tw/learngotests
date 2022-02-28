@@ -70,3 +70,7 @@ func (d Dictionary) Add(word string, definition string) error {
 	}
 	return nil
 }
+
+func (d Dictionary) Update(word string, definition string) {
+	d[word] = definition
+}
